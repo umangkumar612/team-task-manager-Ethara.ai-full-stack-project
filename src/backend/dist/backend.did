@@ -1,0 +1,83 @@
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = record {displayName: text;};
+type UserId = principal;
+type Timestamp = int;
+type TaskView = 
+ record {
+   assignedTo: opt UserId;
+   createdAt: Timestamp;
+   createdBy: UserId;
+   description: text;
+   dueDate: Timestamp;
+   id: TaskId;
+   isOverdue: bool;
+   projectId: ProjectId;
+   status: TaskStatus;
+   title: text;
+ };
+type TaskStatus = 
+ variant {
+   completed;
+   inProgress;
+   toDo;
+ };
+type TaskId = nat;
+type ProjectView = 
+ record {
+   createdBy: UserId;
+   description: text;
+   id: ProjectId;
+   members: vec ProjectMember;
+   name: text;
+ };
+type ProjectRole = 
+ variant {
+   admin;
+   member;
+ };
+type ProjectMember = 
+ record {
+   role: ProjectRole;
+   userId: UserId;
+ };
+type ProjectId = nat;
+type DashboardStats = 
+ record {
+   completed: nat;
+   overdue: nat;
+   pending: nat;
+   total: nat;
+ };
+service : {
+  _initializeAccessControl: () -> ();
+  addProjectMember: (projectId: ProjectId, userId: UserId, role:
+   ProjectRole) -> (bool);
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  createProject: (name: text, description: text) -> (ProjectId);
+  createTask: (projectId: ProjectId, title: text, description: text, dueDate:
+   Timestamp, assignedTo: opt UserId) -> (TaskId);
+  deleteProject: (id: ProjectId) -> (bool);
+  deleteTask: (id: TaskId) -> (bool);
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getDashboard: () -> (DashboardStats) query;
+  getProject: (id: ProjectId) -> (opt ProjectView) query;
+  getTask: (id: TaskId) -> (opt TaskView) query;
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  isCallerAdmin: () -> (bool) query;
+  listMyProjects: () -> (vec ProjectView) query;
+  listProjectTasks: (projectId: ProjectId) -> (vec TaskView) query;
+  removeProjectMember: (projectId: ProjectId, userId: UserId) -> (bool);
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  updateProject: (id: ProjectId, name: text, description: text) -> (bool);
+  updateProjectMemberRole: (projectId: ProjectId, userId: UserId, role:
+   ProjectRole) -> (bool);
+  updateTask: (id: TaskId, title: text, description: text, dueDate:
+   Timestamp, assignedTo: opt UserId) -> (bool);
+  updateTaskStatus: (id: TaskId, status: TaskStatus) -> (bool);
+}

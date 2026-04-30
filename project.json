@@ -1,0 +1,24 @@
+{
+  "overview": "A full-stack collaborative task management app with projects, role-based teams, task assignment, status tracking, and a dashboard — all built on the Internet Computer.",
+  "features": [
+    "Internet Identity login",
+    "Create and manage projects",
+    "Team members with Admin/Member roles",
+    "Task creation and assignment",
+    "Task status workflow (To Do, In Progress, Completed)",
+    "Overdue task tracking",
+    "Dashboard with task counts",
+    "Role-based access control",
+    "Responsive design"
+  ],
+  "category": "productivity",
+  "tags": [
+    "task-manager",
+    "project-management",
+    "teams",
+    "roles",
+    "dashboard",
+    "internet-identity"
+  ],
+  "last_updated": "2026-04-30T16:09:24.428Z"
+}

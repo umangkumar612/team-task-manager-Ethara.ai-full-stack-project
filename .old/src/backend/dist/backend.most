@@ -1,0 +1,68 @@
+// Version: 1.0.0
+type Data__791452850<K, V> =
+  {var count : Nat__490723111; kvs : [var ?(K, V)]};
+type Internal__8484328<K, V> =
+  {children : [var ?Node__46230540<K, V>]; data : Data__791452850<K, V>};
+type Leaf__809889148<K, V> = {data : Data__791452850<K, V>};
+type Map__158565046<K, V> = Map__297112838<K, V>;
+type Map__297112838<K, V> =
+  {var root : Node__46230540<K, V>; var size : Nat__490723111};
+type Map__605269027<K, V> = Map__158565046<K, V>;
+type Nat__490723111 = Nat__920180692;
+type Nat__920180692 = Nat;
+type Node__46230540<K, V> =
+  {#internal : Internal__8484328<K, V>; #leaf : Leaf__809889148<K, V>};
+type ProjectId__478417951 = Nat;
+type ProjectMember__590792194 =
+  {role : ProjectRole__409050885; userId : UserId__158757552};
+type ProjectRole__409050885 = {#admin; #member};
+type Project__720644384 =
+  {
+    createdBy : UserId__158757552;
+    var description : Text;
+    id : ProjectId__478417951;
+    var members : [ProjectMember__590792194];
+    var name : Text
+  };
+type TaskId__207642484 = Nat;
+type TaskStatus__537038292 = {#completed; #inProgress; #toDo};
+type Task__218109324 =
+  {
+    var assignedTo : ?UserId__158757552;
+    createdAt : Timestamp__301639476;
+    createdBy : UserId__158757552;
+    var description : Text;
+    var dueDate : Timestamp__301639476;
+    id : TaskId__207642484;
+    projectId : ProjectId__478417951;
+    var status : TaskStatus__537038292;
+    var title : Text
+  };
+type Timestamp__301639476 = Int;
+type UserId__158757552 = Principal;
+type UserProfile__446616884 = {displayName : Text};
+type UserRole__1073662873 = {#admin; #guest; #user};
+actor {
+  stable accessControlState :
+    {
+      var adminAssigned : Bool;
+      userRoles : Map__605269027<Principal, UserRole__1073662873>
+    };
+  stable nextProjectId : {var value : Nat};
+  stable nextTaskId : {var value : Nat};
+  stable projects :
+    {
+      var root : Node__46230540<ProjectId__478417951, Project__720644384>;
+      var size : Nat__490723111
+    };
+  stable tasks :
+    {
+      var root : Node__46230540<TaskId__207642484, Task__218109324>;
+      var size : Nat__490723111
+    };
+  stable userProfiles :
+    {
+      var root : Node__46230540<UserId__158757552, UserProfile__446616884>;
+      var size : Nat__490723111
+    }
+};

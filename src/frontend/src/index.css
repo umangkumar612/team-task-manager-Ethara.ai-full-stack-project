@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-display: "Space Grotesk", sans-serif;
+    --font-body: "Figtree", sans-serif;
+    --font-mono: "JetBrains Mono", monospace;
+    --radius: 0.5rem;
+
+    --background: 0.99 0 0;
+    --foreground: 0.18 0 0;
+    --card: 0.98 0 0;
+    --card-foreground: 0.18 0 0;
+    --popover: 0.99 0 0;
+    --popover-foreground: 0.18 0 0;
+
+    --primary: 0.55 0.16 258;
+    --primary-foreground: 0.98 0 0;
+
+    --secondary: 0.92 0 0;
+    --secondary-foreground: 0.28 0 0;
+    --muted: 0.92 0 0;
+    --muted-foreground: 0.52 0 0;
+
+    --accent: 0.68 0.14 86;
+    --accent-foreground: 0.98 0 0;
+
+    --destructive: 0.55 0.22 25;
+    --destructive-foreground: 0.98 0 0;
+
+    --border: 0.88 0 0;
+    --input: 0.88 0 0;
+    --ring: 0.55 0.16 258;
+
+    --chart-1: 0.55 0.16 258;
+    --chart-2: 0.68 0.14 86;
+    --chart-3: 0.65 0.18 142;
+    --chart-4: 0.55 0.22 25;
+    --chart-5: 0.58 0.18 199;
+
+    --sidebar: 0.22 0 0;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.68 0.14 86;
+    --sidebar-primary-foreground: 0.22 0 0;
+    --sidebar-accent: 0.35 0 0;
+    --sidebar-accent-foreground: 0.88 0 0;
+    --sidebar-border: 0.32 0 0;
+    --sidebar-ring: 0.68 0.14 86;
+  }
+
+  .dark {
+    --background: 0.12 0 0;
+    --foreground: 0.95 0 0;
+    --card: 0.16 0 0;
+    --card-foreground: 0.95 0 0;
+    --popover: 0.2 0 0;
+    --popover-foreground: 0.95 0 0;
+
+    --primary: 0.68 0.16 258;
+    --primary-foreground: 0.12 0 0;
+
+    --secondary: 0.2 0 0;
+    --secondary-foreground: 0.88 0 0;
+    --muted: 0.2 0 0;
+    --muted-foreground: 0.58 0 0;
+
+    --accent: 0.78 0.14 86;
+    --accent-foreground: 0.12 0 0;
+
+    --destructive: 0.62 0.19 22;
+    --destructive-foreground: 0.12 0 0;
+
+    --border: 0.25 0 0;
+    --input: 0.25 0 0;
+    --ring: 0.68 0.16 258;
+
+    --chart-1: 0.68 0.16 258;
+    --chart-2: 0.78 0.14 86;
+    --chart-3: 0.72 0.18 142;
+    --chart-4: 0.62 0.19 25;
+    --chart-5: 0.65 0.18 199;
+
+    --sidebar: 0.16 0 0;
+    --sidebar-foreground: 0.95 0 0;
+    --sidebar-primary: 0.78 0.14 86;
+    --sidebar-primary-foreground: 0.16 0 0;
+    --sidebar-accent: 0.28 0 0;
+    --sidebar-accent-foreground: 0.85 0 0;
+    --sidebar-border: 0.22 0 0;
+    --sidebar-ring: 0.78 0.14 86;
+  }
+
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+}
+
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("/assets/fonts/SpaceGrotesk.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Figtree";
+  src: url("/assets/fonts/Figtree.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono.woff2") format("woff2");
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer utilities {
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Status badges */
+  .badge-complete {
+    @apply inline-flex items-center rounded-full bg-emerald-100 px-2 py-1 text-xs font-medium text-emerald-700;
+  }
+
+  .badge-pending {
+    @apply inline-flex items-center rounded-full bg-amber-100 px-2 py-1 text-xs font-medium text-amber-700;
+  }
+
+  .badge-overdue {
+    @apply inline-flex items-center rounded-full bg-red-100 px-2 py-1 text-xs font-medium text-red-700;
+  }
+
+  .badge-admin {
+    @apply inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700;
+  }
+
+  .badge-member {
+    @apply inline-flex items-center rounded-full bg-slate-100 px-2 py-1 text-xs font-medium text-slate-700;
+  }
+
+  /* Dark mode badge variants */
+  .dark .badge-complete {
+    @apply bg-emerald-900 text-emerald-200;
+  }
+
+  .dark .badge-pending {
+    @apply bg-amber-900 text-amber-200;
+  }
+
+  .dark .badge-overdue {
+    @apply bg-red-900 text-red-200;
+  }
+
+  .dark .badge-admin {
+    @apply bg-blue-900 text-blue-200;
+  }
+
+  .dark .badge-member {
+    @apply bg-slate-700 text-slate-200;
+  }
+
+  /* Card elevation */
+  .card-flat {
+    @apply border border-border bg-card shadow-none;
+  }
+
+  .card-elevated {
+    @apply border border-border bg-card shadow-sm;
+  }
+
+  /* Text hierarchy */
+  .text-headline-lg {
+    @apply text-2xl font-display font-bold tracking-tight;
+  }
+
+  .text-headline-md {
+    @apply text-xl font-display font-semibold tracking-tight;
+  }
+
+  .text-body-lg {
+    @apply text-base font-body font-normal;
+  }
+
+  .text-body-sm {
+    @apply text-sm font-body font-normal;
+  }
+
+  .text-caption {
+    @apply text-xs font-body font-normal text-muted-foreground;
+  }
+}
