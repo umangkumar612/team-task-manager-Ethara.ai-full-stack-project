@@ -45,7 +45,7 @@ export default function Layout({ children }: LayoutProps) {
               rel="noopener noreferrer"
               className="text-primary hover:underline"
             >
-              caffeine.ai
+              Umang kumar
             </a>
           </p>
         </footer>
